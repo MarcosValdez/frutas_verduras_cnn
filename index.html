@@ -8,9 +8,17 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
   <style>
     #resultado {
+
+      font-weight: bold;
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    #pie {
+
       font-weight: bold;
       font-size: 3rem;
       text-align: center;
@@ -26,7 +34,7 @@
       <h1 class="display-5 fw-bold">Frutas y Verduras</h1>
       <div class="col-lg-6 mx-auto">
         <p class="lead mb-0">Clasificaci&oacute;n de im&aacute;genes de frutas o verduras, usando la c&aacute;mara de la
-          laptop, celular, tablet</p>
+          laptop, celular, tablet.</p>
 
       </div>
     </div>
@@ -35,15 +43,34 @@
 
     <div class="container mt-5">
       <div class="row">
-        <div class="col-12 col-md-4 offset-md-4 text-center">
+        <div class="col-6 col-md-4 text-center border border-4 rounded-3">
           <video id="video" playsinline autoplay style="width: 1px;"></video>
           <button class="btn btn-primary mb-2" id="cambiar-camara" onclick="cambiarCamara();">Cambiar camara</button>
           <canvas id="canvas" width="400" height="400" style="max-width: 100%;"></canvas>
           <canvas id="otrocanvas" width="224" height="224" style="display: none"></canvas>
-          <div id="resultado"></div>
-          <button class="btn btn-primary mb-2" id="cambiar-camara" onclick="valorNutricional();">Valor
-            nutricional</button>
-          <div id="nombre_resultado"></div>
+        </div>
+        <div class="col-2  text-center"></div>
+        <div class="col-5 col-md-5 text-center border border-4 rounded-3">
+          <div id="resultado"> </div>
+
+          <button class="btn btn-primary mb-2" id="cambiar-camara" onclick="valorNutricional();">
+            Valor nutricional</button>
+          
+            <div class="card text-center mt-4 ">
+              <div class="card-header" >
+                <h5 class="card-title" id="nombre_resultado"></h5>
+              </div>
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Cada unidad de este alimento proporciona: </h6>
+                <div id="carbohidratos"></div>
+                <div id="grasas"></div>
+                <div id="proteinas"></div>
+                <div id="calorias"></div>
+              </div>
+              <div class="card-footer text-muted">
+              </div>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -52,11 +79,7 @@
 
     <div class="bg-dark text-secondary mt-5 px-4 py-2 text-center">
       <div class="py-5">
-        <h1 class="display-5 fw-bold text-white">Ringa Tech</h1>
-        <div class="col-lg-6 mx-auto">
-          <p class="fs-5 mb-4">Revisa <a href="https://youtube.com/RingaTech">mi canal</a> para videos de inteligencia
-            artificial, programaci&oacute;n, etc.</p>
-        </div>
+        <h1 id="pie">U.N.M.S.M.</h1>
       </div>
     </div>
 
@@ -177,56 +200,36 @@
 
       setTimeout(predecir, 1500);
     }
-    var globa
+    var global
+    var global2
 
     function mostrarResultado1(indice) {
       console.log("indice:", indice)
-      var respuesta = ['apple', 'banana', 'beetroot', 'bell pepper', 'cabbage', 'capsicum', 'carrot', 'cauliflower', 'chilli pepper', 'corn', 'cucumber', 'eggplant', 'garlic', 'ginger', 'grapes', 'jalepeno', 'kiwi', 'lemon', 'lettuce', 'mango', 'onion', 'orange', 'paprika', 'pear', 'peas', 'pineapple', 'pomegranate', 'potato', 'raddish', 'soy beans', 'spinach', 'sweetcorn', 'sweetpotato', 'tomato', 'turnip', 'watermelon']
+      var respuesta = ['Manzana', 'Platano', 'Raíz de remolacha', 'Pimiento', 'Repollo', 'capsicum', 'Zanahoria', 'Coliflor', 'Pimiento picante', 'Maíz', 'Pepino', 'Berenjena', 'Ajo', 'Jengibre', 'Uva', 'Jalapeño', 'Kiwi', 'Limón', 'Lechuga', 'Mango', 'Cebolla', 'Naranja', 'Pimenton', 'Pera', 'Guisante', 'Piña', 'Granada', 'Papa', 'Rábano', 'soy beans', 'Espinaca', 'Maíz dulce', 'Camote', 'Tomate', 'Nabo', 'Sandía']
+      var respuesta_ingles = ['apple', 'banana', 'beetroot', 'Pimenton', 'cabbage', 'capsicum', 'carrot', 'cauliflower', 'chilli pepper', 'corn', 'cucumber', 'eggplant', 'garlic', 'ginger', 'grapes', 'jalepeno', 'kiwi', 'lemon', 'lettuce', 'mango', 'onion', 'orange', 'paprika', 'pear', 'peas', 'pineapple', 'pomegranate', 'potato', 'raddish', 'soy beans', 'spinach', 'sweetcorn', 'sweetpotato', 'tomato', 'turnip', 'watermelon']
       console.log("respuesta", respuesta[indice])
-      globa = respuesta[indice]
-      document.getElementById("resultado").innerHTML = respuesta[indice];
+      global = respuesta[indice]
+      global2 = respuesta_ingles[indice]
+      document.getElementById("resultado").innerHTML = "Resultado: " + respuesta[indice];
     }
 
     async function valorNutricional() {
-      document.getElementById("nombre_resultado").innerHTML = globa;
+      document.getElementById("nombre_resultado").innerHTML = "ALIMENTO: " + global;
+      const URL = "https://api.edamam.com/api/food-database/v2/parser?app_id=ac2e32d3&app_key=570035196d47535a211a5171e1524468%09&ingr=" + global2 + "&nutrition-type=logging"
 
-      console.log("fruta o verdiura: ", globa)
-      console.log("exito")
-      const URL = "https://api.spoonacular.com/recipes/guessNutrition?apiKey=4c11de6f7d6b469d96e25841b6b2f8f1&title=cucumber"
+      const respue = await fetch(URL);
 
+      const datos = await respue.json()
+      console.log(datos)
+      console.log("GRASAS: ", datos.parsed[0].food.nutrients.FAT)
+      console.log("ENERGIA: ", datos.parsed[0].food.nutrients.ENERC_KCAL)
+      console.log("CARBOHIDRATOS: ", datos.parsed[0].food.nutrients.CHOCDF)
+      console.log("PROTEINAS: ", datos.parsed[0].food.nutrients.PROCNT)
+      document.getElementById("carbohidratos").innerHTML = "CARBOHIDRATOS: " + datos.parsed[0].food.nutrients.CHOCDF + " g";
+      document.getElementById("proteinas").innerHTML = "PROTEINAS: " + datos.parsed[0].food.nutrients.PROCNT + " g";
+      document.getElementById("grasas").innerHTML = "GRASAS: " + datos.parsed[0].food.nutrients.FAT + " g";
+      document.getElementById("calorias").innerHTML = "ENERGIA: " + datos.parsed[0].food.nutrients.ENERC_KCAL + " kcal";
 
-      /*    fetch(URL)
-   
-           .then(response => {
-            
-             console.log(response)
-           })
-           .catch(error => {
-             
-           }); */
-      var respuestaAPI = postData(URL)
-      
-      console.log("respuesta de la API", respuestaAPI)
-
-    }
-
-    async function postData(url = '') {
-      // Opciones por defecto estan marcadas con un *
-      const response = await fetch(url, {
-        method: 'GET',
-        //mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json'
-          /* 'x-api-key': '4c11de6f7d6b469d96e25841b6b2f8f1' */
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
-        //body: JSON.stringify(data)
-      });
-      return response.json(); // parses JSON response into native JavaScript objects
     }
     /**
        * Hermite resize - fast image resize/resample using Hermite filter. 1 cpu version!
